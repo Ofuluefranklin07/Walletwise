@@ -40,23 +40,23 @@ export default function ExpenseList({ expenses, onDeleteExpense }: ExpenseListPr
   );
 
   return (
-    <div className="bg-white rounded-[40px] shadow-sm p-10 flex flex-col gap-8 h-full">
-      <div className="flex justify-between items-center">
-        <h3 className="text-2xl font-black text-slate-800 tracking-tight">Recent Activity</h3>
-        <button className="text-[10px] font-black text-indigo-500 hover:bg-indigo-50 px-3 py-1.5 rounded-xl transition-colors uppercase tracking-widest leading-none">
-          View All
+    <div className="bg-white rounded-2xl md:rounded-[40px] shadow-sm p-5 md:p-10 flex flex-col gap-6 md:gap-8 h-full">
+      <div className="flex justify-between items-center px-2">
+        <h3 className="text-xl md:text-2xl font-black text-slate-800 tracking-tight">Recent Activity</h3>
+        <button className="text-[9px] md:text-[10px] font-black text-indigo-500 hover:bg-indigo-50 px-2 md:px-3 py-1.5 rounded-lg md:rounded-xl transition-colors uppercase tracking-widest leading-none">
+          All
         </button>
       </div>
       
-      <div className="flex flex-col gap-5 overflow-hidden">
+      <div className="flex flex-col gap-3 md:gap-5 overflow-hidden">
         {sortedExpenses.map((expense) => (
           <div 
             key={expense.id}
-            className="group flex items-center justify-between p-5 bg-indigo-50/50 hover:bg-white hover:shadow-2xl hover:shadow-indigo-500/10 border border-transparent hover:border-indigo-100 rounded-[28px] transition-all"
+            className="group flex items-center justify-between p-4 md:p-5 bg-indigo-50/40 hover:bg-white hover:shadow-xl hover:shadow-indigo-500/10 border border-transparent hover:border-indigo-100 rounded-2xl md:rounded-[28px] transition-all"
           >
-            <div className="flex items-center gap-5">
+            <div className="flex items-center gap-3 md:gap-5 min-w-0">
               <div 
-                className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl shadow-sm bg-white border border-indigo-100"
+                className="w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl flex items-center justify-center text-xl md:text-2xl shadow-sm bg-white border border-indigo-100 shrink-0"
               >
                 {expense.category === 'Food' ? '🍔' : 
                  expense.category === 'Transport' ? '🚗' : 
@@ -66,33 +66,33 @@ export default function ExpenseList({ expenses, onDeleteExpense }: ExpenseListPr
                  expense.category === 'Health' ? '🏥' : '💰'}
               </div>
               
-              <div className="space-y-0.5">
-                <h3 className="text-base font-black text-slate-800 group-hover:text-indigo-600 transition-colors">
+              <div className="space-y-0.5 min-w-0">
+                <h3 className="text-sm md:text-base font-black text-slate-800 truncate group-hover:text-indigo-600 transition-colors">
                   {expense.title}
                 </h3>
-                <div className="flex items-center gap-4 text-xs font-bold text-slate-400">
-                  <span className="flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full" style={{ backgroundColor: CATEGORY_COLORS[expense.category] }} />
+                <div className="flex items-center gap-2 md:gap-4 text-[10px] md:text-xs font-bold text-slate-400">
+                  <span className="flex items-center gap-1 md:gap-1.5 truncate">
+                    <span className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full shrink-0" style={{ backgroundColor: CATEGORY_COLORS[expense.category] }} />
                     {expense.category}
                   </span>
-                  <span className="flex items-center gap-1.5">
-                    {format(new Date(expense.date), 'MMM dd, yyyy')}
+                  <span className="shrink-0">
+                    {format(new Date(expense.date), 'MMM dd')}
                   </span>
                 </div>
               </div>
             </div>
 
-            <div className="flex items-center gap-6">
-              <p className="text-lg font-black text-rose-500 whitespace-nowrap">
-                -${expense.amount.toLocaleString(undefined, { minimumFractionDigits: 2 })}
+            <div className="flex items-center gap-3 md:gap-6 ml-2">
+              <p className="text-sm md:text-lg font-black text-rose-500 whitespace-nowrap">
+                -${expense.amount.toFixed(expense.amount % 1 === 0 ? 0 : 2)}
               </p>
               
               <button
                 onClick={() => onDeleteExpense(expense.id)}
-                className="p-2.5 text-slate-300 hover:text-rose-500 hover:bg-rose-50 rounded-xl transition-all opacity-0 group-hover:opacity-100"
-                title="Delete Transaction"
+                className="p-1.5 md:p-2.5 text-slate-300 hover:text-rose-500 hover:bg-rose-50 rounded-lg md:rounded-xl transition-all opacity-100 md:opacity-0 md:group-hover:opacity-100"
+                title="Delete"
               >
-                <Trash2 className="w-4 h-4" />
+                <Trash2 size={14} className="md:w-4 md:h-4" />
               </button>
             </div>
           </div>
