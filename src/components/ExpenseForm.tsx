@@ -46,18 +46,18 @@ export default function ExpenseForm({ onAddExpense }: ExpenseFormProps) {
   return (
     <form 
       onSubmit={handleSubmit}
-      className="bg-white p-6 md:p-10 rounded-2xl md:rounded-[40px] shadow-sm border border-indigo-100 flex flex-col gap-5 md:gap-6"
+      className="bg-white dark:bg-slate-900 p-6 md:p-10 rounded-2xl md:rounded-[40px] shadow-sm border border-indigo-100 dark:border-slate-800 flex flex-col gap-5 md:gap-6 transition-colors duration-300"
     >
       <div className="flex items-center gap-3">
         <div className="w-8 h-8 md:w-10 md:h-10 bg-indigo-600 rounded-xl md:rounded-2xl flex items-center justify-center text-white shadow-lg shadow-indigo-200">
            <PlusCircle size={20} className="md:w-6 md:h-6" />
         </div>
-        <h2 className="text-xl md:text-2xl font-black text-slate-800 tracking-tight">Record Spend</h2>
+        <h2 className="text-xl md:text-2xl font-black text-slate-800 dark:text-slate-100 tracking-tight">Record Spend</h2>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
         <div className="space-y-1 md:space-y-2">
-          <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">
+          <label className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest ml-1">
             Description
           </label>
           <input
@@ -65,37 +65,40 @@ export default function ExpenseForm({ onAddExpense }: ExpenseFormProps) {
             placeholder="e.g. Starbucks"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full px-5 py-3 md:px-6 md:py-4 bg-indigo-50/50 border border-transparent rounded-xl md:rounded-[20px] focus:outline-none focus:ring-4 focus:ring-indigo-500/10 focus:bg-white focus:border-indigo-200 transition-all font-bold text-slate-800 placeholder:text-slate-300"
+            className="w-full px-5 py-3 md:px-6 md:py-4 bg-indigo-50/50 dark:bg-slate-800/50 border border-transparent rounded-xl md:rounded-[20px] focus:outline-none focus:ring-4 focus:ring-indigo-500/10 focus:bg-white dark:focus:bg-slate-800 focus:border-indigo-200 dark:focus:border-indigo-900 transition-all font-bold text-slate-800 dark:text-slate-100 placeholder:text-slate-300 dark:placeholder:text-slate-600"
             required
           />
         </div>
 
         <div className="space-y-1 md:space-y-2">
-          <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">
+          <label className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest ml-1">
             Amount
           </label>
-          <input
-            type="number"
-            step="0.01"
-            placeholder="0.00"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            className="w-full px-5 py-3 md:px-6 md:py-4 bg-indigo-50/50 border border-transparent rounded-xl md:rounded-[20px] focus:outline-none focus:ring-4 focus:ring-indigo-500/10 focus:bg-white focus:border-indigo-200 transition-all font-bold text-slate-800 placeholder:text-slate-300"
-            required
-          />
+          <div className="relative">
+            <span className="absolute left-5 top-1/2 -translate-y-1/2 font-black text-slate-400 pointer-events-none">₦</span>
+            <input
+              type="number"
+              step="0.01"
+              placeholder="0.00"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              className="w-full pl-10 pr-5 py-3 md:pl-12 md:pr-6 md:py-4 bg-indigo-50/50 dark:bg-slate-800/50 border border-transparent rounded-xl md:rounded-[20px] focus:outline-none focus:ring-4 focus:ring-indigo-500/10 focus:bg-white dark:focus:bg-slate-800 focus:border-indigo-200 dark:focus:border-indigo-900 transition-all font-bold text-slate-800 dark:text-slate-100 placeholder:text-slate-300 dark:placeholder:text-slate-600"
+              required
+            />
+          </div>
         </div>
 
         <div className="space-y-1 md:space-y-2">
-          <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">
+          <label className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest ml-1">
             Category
           </label>
           <select
             value={category}
             onChange={(e) => setCategory(e.target.value as Category)}
-            className="w-full px-5 py-3 md:px-6 md:py-4 bg-indigo-50/50 border border-transparent rounded-xl md:rounded-[20px] focus:outline-none focus:ring-4 focus:ring-indigo-500/10 focus:bg-white focus:border-indigo-200 transition-all font-bold text-slate-800 appearance-none cursor-pointer"
+            className="w-full px-5 py-3 md:px-6 md:py-4 bg-indigo-50/50 dark:bg-slate-800/50 border border-transparent rounded-xl md:rounded-[20px] focus:outline-none focus:ring-4 focus:ring-indigo-500/10 focus:bg-white dark:focus:bg-slate-800 focus:border-indigo-200 dark:focus:border-indigo-900 transition-all font-bold text-slate-800 dark:text-slate-100 appearance-none cursor-pointer"
           >
             {CATEGORIES.map((cat) => (
-              <option key={cat} value={cat}>
+              <option key={cat} value={cat} className="bg-white dark:bg-slate-900">
                 {cat}
               </option>
             ))}
@@ -103,14 +106,14 @@ export default function ExpenseForm({ onAddExpense }: ExpenseFormProps) {
         </div>
 
         <div className="space-y-1 md:space-y-2">
-          <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">
+          <label className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest ml-1">
             Date
           </label>
           <input
             type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
-            className="w-full px-5 py-3 md:px-6 md:py-4 bg-indigo-50/50 border border-transparent rounded-xl md:rounded-[20px] focus:outline-none focus:ring-4 focus:ring-indigo-500/10 focus:bg-white focus:border-indigo-100 transition-all font-bold text-slate-800"
+            className="w-full px-5 py-3 md:px-6 md:py-4 bg-indigo-50/50 dark:bg-slate-800/50 border border-transparent rounded-xl md:rounded-[20px] focus:outline-none focus:ring-4 focus:ring-indigo-500/10 focus:bg-white dark:focus:bg-slate-800 focus:border-indigo-100 dark:focus:border-indigo-900 transition-all font-bold text-slate-800 dark:text-slate-100 dark:[color-scheme:dark]"
           />
         </div>
       </div>
