@@ -8,6 +8,8 @@ export const CATEGORIES: Category[] = [
   'Utilities',
   'Health',
   'Other',
+  'School' 
+
 ];
 
 export const CATEGORY_COLORS: Record<Category, string> = {
@@ -18,6 +20,7 @@ export const CATEGORY_COLORS: Record<Category, string> = {
   Utilities: '#F43F5E', // Rose 500
   Health: '#10B981', // Emerald 500
   Other: '#94A3B8', // Slate 400
+   School: '#13ce80',
 };
 
 export const DEMO_EXPENSES: Expense[] = [
@@ -47,6 +50,13 @@ export const DEMO_EXPENSES: Expense[] = [
     title: 'Freelance Payout',
     amount: 2400.00,
     category: 'Other',
+    date: new Date(Date.now() - 86400000 * 5).toISOString(),
+  },
+    {
+    id: '5',
+    title: 'Academic Spendings',
+    amount: 10000.00,
+    category: 'School',
     date: new Date(Date.now() - 86400000 * 5).toISOString(),
   },
 ];
